@@ -1,0 +1,13 @@
+<h1>Welcome</h1>
+<p>With supporting text below as a natural lead-in to additional content.</p>
+<button>See transactions</button>
+<p>You have {{recordsData.length}} records.</p>
+<div
+  class="card flex-column"
+  *ngFor="let recordType of Object.keys(recordsDataOfType)"
+>
+  <p>{{recordsDataOfType[recordType].length}}</p>
+  <p>{{recordType}}</p>
+  <button
+  routerLink="navigator">See all</button>
+</div>

@@ -17,4 +17,8 @@ export interface IRecord {
   address: string;
 }
 
+export interface IFilteredRecords {
+  [key: string]: IRecord[];
+}
+
 export type RecordType = 'income' | 'outcome' | 'loan' | 'investment';

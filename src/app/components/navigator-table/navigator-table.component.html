@@ -1,0 +1,14 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Amount</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let record of records">
+    <td>{{record.name.first + ' ' + record.name.last}}</td>
+    <td>{{record.amount}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -12,7 +12,7 @@ import {trimRecordType} from "../../../utils/utils";
 export class NavigatorPageComponent implements OnInit {
   public records: IRecord[]
 
-  constructor(public recordsService:RecordsService, public router:ActivatedRoute) { }
+  constructor(private recordsService:RecordsService, private router:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.router.queryParams.subscribe((x) => {

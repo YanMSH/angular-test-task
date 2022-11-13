@@ -19,7 +19,7 @@ export class SummaryPageComponent implements OnInit {
   public recordsDataOfType: IFilteredRecords;
   tabs: string[];
   Object = Object;
-  constructor(public recordsService:RecordsService) {
+  constructor(private recordsService:RecordsService) {
     this.tabs = tabs;
   }
 
@@ -27,7 +27,7 @@ export class SummaryPageComponent implements OnInit {
     return this.recordsService.getRecordsByType(trimRecordType(recordType)).length
   }
   ngOnInit(): void {
-    const recordsData = this.recordsService.getRecords();
+    this.recordsData = this.recordsService.getRecords();
     this.incomeRecordsData = this.recordsService.getRecordsByType('income');
     this.outcomeRecordsData = this.recordsService.getRecordsByType('outcome');
     this.loanRecordsData = this.recordsService.getRecordsByType('loan');
@@ -38,7 +38,6 @@ export class SummaryPageComponent implements OnInit {
       loans: this.loanRecordsData,
       investments: this.investmentsRecordsData,
     }
-    this.recordsData = recordsData;
   }
 
 }

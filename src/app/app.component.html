@@ -1,1 +1,21 @@
+<nav class="nav m-auto justify-content-center card-header">
+  <ul class="nav">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/"
+        routerLinkActive="font-weight-bold" [routerLinkActiveOptions]="{exact:true}">Summary</a>
+    </li>
+    <li class="nav-item" >
+      <a
+        class="nav-link"
+        routerLink="navigator"
+        routerLinkActive="font-weight-bold"
+      >Navigator</a>
+    </li>
+  </ul>
+</nav>
 <router-outlet></router-outlet>
+<footer class="card-footer text-center text-black-50 pt-3 pb-3">
+  <a href="https://github.com/YanMSH/">Yan Sharipov</a> 2022
+</footer>

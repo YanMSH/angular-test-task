@@ -1,6 +1,7 @@
 <ul class="nav nav-tabs">
-  <li class="nav-item" *ngFor="let tab of tabs; let i = index">
-    <a class="nav-link" [routerLink]="['/navigator?tab=',i]" [queryParams]="{edit:true}" ]
-    (click)="navigatorPageService.currentTab$.next(tab)">{{tab | titlecase}}</a>
+  <li class="nav-item cursor-pointer" *ngFor="let tab of tabs; let i = index">
+    <a class="nav-link"
+       [ngClass]="tab === currentTab ? 'active font-weight-bold' : null"
+    (click)="this.goToTab(tab)">{{tab | titlecase}}</a>
   </li>
 </ul>

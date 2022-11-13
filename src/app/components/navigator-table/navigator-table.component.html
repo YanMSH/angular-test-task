@@ -1,8 +1,8 @@
-<table class="table">
+<table class="table text-center">
   <thead>
   <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Amount</th>
+    <th class="w-50" scope="col">Name</th>
+    <th class="w-50" scope="col">Amount</th>
   </tr>
   </thead>
   <tbody>
@@ -10,5 +10,13 @@
     <td>{{record.name.first + ' ' + record.name.last}}</td>
     <td>{{record.amount}}</td>
   </tr>
+  <tr *ngIf="records.length === 0">
+    <td>-</td>
+    <td>-</td>
+  </tr>
   </tbody>
 </table>
+<p
+  *ngIf="records.length === 0"
+  class="text-center text-black-50"
+>No data</p>

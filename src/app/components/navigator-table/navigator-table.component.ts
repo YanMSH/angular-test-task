@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {records} from "../../../data/records";
-import {NavigatorPageService} from "../../../services/navigator-page.service";
+import {Component, OnInit} from '@angular/core';
+import {IRecord} from "../../../models/records";
+import {RecordsService} from "../../../services/records.service";
+import {ActivatedRoute} from "@angular/router";
+import {trimRecordType} from "../../../utils/utils";
+import {tabs} from "../../../constants/tabs";
 
 @Component({
   selector: 'app-navigator-table',
@@ -8,11 +11,20 @@ import {NavigatorPageService} from "../../../services/navigator-page.service";
   styleUrls: ['./navigator-table.component.scss']
 })
 export class NavigatorTableComponent implements OnInit {
+  records: IRecord[];
+  tabs: string[];
 
-  constructor(public navigatorPageService:NavigatorPageService) { }
-  records = records.data;
-  ngOnInit(): void {
-    console.log(this.navigatorPageService.currentTab$.getValue())
+  constructor(private recordsService:RecordsService, private router:ActivatedRoute) {
+  this.tabs = tabs;
   }
 
+  ngOnInit(): void {
+    this.router.queryParams.subscribe((x) => {
+      if(x['tab']){
+        this.records = this.recordsService.getRecordsByType(trimRecordType(tabs[x['tab']]))
+      } else {
+        this.records = this.recordsService.getRecordsByType('income')
+      }
+    });
+  }
 }

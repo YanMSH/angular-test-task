@@ -5,9 +5,12 @@ import {records} from "../data/records";
 @Injectable({
   providedIn:'root'
 })
-export class SummaryPageService {
+export class RecordsService {
   private records: IRecord[] = records.data;
   getRecords(){
     return this.records
+  }
+  getRecordsByType(type: string){
+    return this.records.filter(record => {return record.type === type})
   }
 }

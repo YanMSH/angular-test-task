@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { IFilteredRecords, IRecord} from "../../../models/records";
-import {SummaryPageService} from "../../../services/summary-page.service";
-
+import {RecordsService} from "../../../services/records.service";
+import {trimRecordType} from "../../../utils/utils";
+import {tabs} from "../../../constants/tabs";
 
 
 @Component({
@@ -16,15 +17,21 @@ export class SummaryPageComponent implements OnInit {
   private loanRecordsData: IRecord[];
   private investmentsRecordsData: IRecord[];
   public recordsDataOfType: IFilteredRecords;
+  tabs: string[];
   Object = Object;
-  constructor(public summaryPageService:SummaryPageService) { }
+  constructor(public recordsService:RecordsService) {
+    this.tabs = tabs;
+  }
 
+  public getAmountOfRecords(recordType: string){
+    return this.recordsService.getRecordsByType(trimRecordType(recordType)).length
+  }
   ngOnInit(): void {
-    const recordsData = this.summaryPageService.getRecords();
-    this.incomeRecordsData = recordsData.filter((record) => {return record.type === 'income'})
-    this.outcomeRecordsData = recordsData.filter((record) => {return record.type === 'outcome'})
-    this.loanRecordsData = recordsData.filter((record) => {return record.type === 'loan'})
-    this.investmentsRecordsData = recordsData.filter((record) => {return record.type === 'investment'})
+    const recordsData = this.recordsService.getRecords();
+    this.incomeRecordsData = this.recordsService.getRecordsByType('income');
+    this.outcomeRecordsData = this.recordsService.getRecordsByType('outcome');
+    this.loanRecordsData = this.recordsService.getRecordsByType('loan');
+    this.investmentsRecordsData = this.recordsService.getRecordsByType('investment');
     this.recordsDataOfType = {
       income: this.incomeRecordsData,
       outcome: this.outcomeRecordsData,

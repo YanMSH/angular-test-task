@@ -6,7 +6,7 @@ export interface  IAllRecords {
 export interface IRecord {
   _id: string;
   amount: number;
-  type: RecordType;
+  type: string;
   name: {
     first: string;
     last: string;
@@ -21,4 +21,3 @@ export interface IFilteredRecords {
   [key: string]: IRecord[];
 }
 
-export type RecordType = 'income' | 'outcome' | 'loan' | 'investment';
